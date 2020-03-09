@@ -67,5 +67,77 @@ plot(x, y, xlab="Name of variable x", ylab="Name of variable y")
 boxplot(x, y, names = c("x", "y"))
 hist(x, freq=FALSE, nclass=10)
 
+# quantile-quantile plot.
 qqnorm(x)
 qqline(x)
+
+# dataframe
+x = rnorm(100)
+y = 2*x + rnorm(100, 0, 0.8)
+z = 0.5*x + rnorm(100, 0, 0.5)
+t = data.frame(x, y, z)
+summary(t$x)
+plot(t)
+
+# list
+L = list(one=1, two=c(1,2), five=seq(0, 1, length=5))
+L
+L$five + 10
+
+# i/o
+t = data.frame(x=c(1, 2, 3), y=c(30, 20, 10))
+t
+write.table(t, file="mydata.txt", row.names=FALSE)
+t2 = read.table(file="mydata.txt", header=TRUE)
+t2
+
+x=c(rnorm(10), NA, rnorm(2))
+x
+min(x)
+min(x, na.rm=TRUE)
+mean(x, na.rm=TRUE)
+
+# conditionals
+x = rnorm(10)
+x
+if(mean(x) > median(x))
+{
+  "The mean is greater than the median"
+}else{
+  "The mean is smaller than the median"
+}
+
+# for loop
+B = 1000 # number of trials
+n = 5 # sample size
+xbar.seq = 1:B
+for (i in 1:B)
+{
+  sample = rnorm(5)
+  xbar.seq[i] = mean(sample)
+}
+hist(xbar.seq)
+
+# function
+myfun = function(x)
+{
+  y = x^2
+  return(y)
+}
+myfun(1.5)
+
+x = seq(-2, 2, length=100)
+plot(x, myfun(x), type="l")
+
+mymedian <- function(x) {
+  n = length(x)
+  if(n %% 2 == 1) {
+    sort(x)[(n+1)/2]
+  }else{
+    middletwo = sort(x)[(n/2) + 0:1]
+    return(mean(middletwo))
+  }
+}
+x = rnorm(100)
+mymedian(x)
+median(x)
