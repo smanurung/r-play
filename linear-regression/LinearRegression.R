@@ -73,4 +73,11 @@ points(a, resLM, pch=0, col="green")
 points(a, resLM0, pch=2, col='blue')
 
 ## Residuals vs b.
-resGolden2 = b - goldenSlope*a
+resGolden2 = a - goldenSlope*b
+resLM2 = reg2$residuals
+resLM20 = reg20$residuals
+plot(b, resGolden2,
+     main = 'residuals vs b',
+     ylab = 'residuals')
+points(b, resLM2, pch=0, col='green')
+points(b, resLM20, pch=2, col='blue')
