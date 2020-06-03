@@ -10,6 +10,8 @@ loss <- function(x, q, theta) {
   (cdf(x, theta) - q)^2
 }
 
+# TODO: to avoid local optimum, try multiple starting point.
+
 # 1st method: use L-BFGS-B
 fit.cdf <- function(quant) {
   optim(c(3), loss, theta=0.3, q=quant, method="L-BFGS-B",
